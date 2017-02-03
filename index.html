@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Demo</title>
+</head>
+<body>
+	<a href="http://jquery.com/">jQuery</a>
+	<script src="jquery-3.1.1.js"></script>
+	<script>
+
+		// The onload event is triggered after the entire page is loaded, including large images.
+		window.onload = function() {
+			console.log( "Window is loaded." );
+		};
+
+		// jQuery provides a 'ready' event that executes as soon as the document can be manipulated.
+		//
+		// The window object has a jQuery property.
+		// This is how the jQuery library exposes itself.
+		// window.jQuery.ready = function() {
+		// 	console.log('window.jQuery.ready has hit.');
+		// };
+
+		// The window object also has a $ property.
+		// This is an alias for the jQuery property.
+		// window.$.ready = function() {
+		// 	console.log('window.$.ready has hit.');
+		// };
+
+		// The jQuery library provides the jQuery() function, which creates jQuery objects based on HTML or CSS selectors.
+		jQuery(window).ready(function() {
+			console.log('jQuery(window).ready has hit.');
+		});
+
+		// Remember that $() is aliased to jQuery(), so this is identical
+		$(window).ready(function() {
+			console.log('$(window).ready has hit.');
+		});
+	</script>
+</body>
+</html>
