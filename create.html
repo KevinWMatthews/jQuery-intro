@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Create HTML Elements</title>
+</head>
+<body>
+
+	<script src="jquery-3.1.1.js"></script>
+	<script>
+	$(function() {
+		// $() [the alias for jQuery()] can be used to create new HTML elements.
+		// These elements will not be placed on the page until you specifically do so.
+		// Look at the 'Elements' tab of the Chrome developer tools to see how these elements are placed.
+		var p1 = $('<p>');						// Create a new <p> element with no content.
+		$(document.body).append(p1);			// Appending elements is a topic in its own right.
+		var p2 = $('<p>Hello, world!</p>');		// Create a new <p> element with content.
+		$(document.body).append(p2);
+		var p3 = $('<p class="paragraph">I am a paragraph</p>');
+		$(document.body).append(p3);
+
+		var p4 = $('<p>', {
+			html: 'This is my HTML',
+			'class': 'paragraph'	// class is a reserved word in javascript so it must be quoted.
+		});
+		$(document.body).append(p4);
+	});
+	</script>
+</body>
+</html>
