@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Select HTML</title>
+</head>
+<body>
+	<h1>Create jQuery objects</h1>
+	<h2 id="header2_1">This is done by selecting from DOM elements</h2>
+	<h2 id="header2_2">or by selecting from an existing jQuery object</h2>
+	<p class="paragraph">Here is an unordered list:</p>
+	<ul style="list-style-type:disc">
+		<li>Coffee</li>
+		<li>Tea</li>
+		<li>Milk</li>
+	</ul>
+
+	<p class="paragraph">Here is an ordered list:</p>
+	<ol type="1">
+		<li>Milk</li>
+		<li>Cocoa Powder</li>
+		<li>Peanut Butter</li>
+		<li>Vanilla</li>
+		<li>Sugar</li>
+		<li>Coffee</li>
+	</ol>
+
+	<h3 id="header3">One more header for good measure.</h3>
+
+	<script src="jquery-3.1.1.js"></script>
+	<script>
+		// Do not do anything until the document is loaded. Equivalent to wrapping this in $(document).ready()
+		$(function() {
+			// Create from DOM object
+			console.log('h1:');
+			var header1 = $(document.body.children[0]);
+			console.log(header1);
+
+			// Create an array of jQuery objects from several DOM objects.
+			console.log('h1 and h2:');
+			var headers = $([document.body.children[0], document.body.children[1]]);
+			console.log(headers);
+
+			// Create directly from an ID tag
+			var header2_2 = $('#header2_2');
+			console.log(header2_2);
+
+			// Select all items of one type
+			console.log('all li:');
+			var all_list_items = $('li');
+			console.log(all_list_items);
+
+			// Select by class
+			console.log('All p by class');
+			var all_paragraphs = $('.paragraph');
+			console.log(all_paragraphs);
+
+			// Select all items of one type that are within another type:
+			console.log('All list items in an ordered list using selectors:');
+			var ordered_list_items = $('ol li');
+			console.log(ordered_list_items);
+
+			// Select within context of a DOM element
+			console.log('All list items in unordered list using DOM:')
+			var unordered_list = document.body.children[3];		// This is super klunky, but it gives us an actual DOM object.
+			console.log(unordered_list);
+			var unordered_list_items = $('li', unordered_list);	// Select from within the DOM element.
+			console.log(unordered_list_items);
+
+			// Select within the context of another jQuery object.
+			console.log('All list items in unordered list using jQuery:')
+			var unordered_list = $('ul');       				// Create a jQuery object of our one unordered list.
+			console.log(unordered_list);
+			var unordered_list_items = $('li', unordered_list);	// Select from within the jQuery object
+			console.log(unordered_list_items);
+
+			// Test for objects existence:
+			console.log("Check for non-existent object:");
+			var does_not_exist = $('#does_not_exist');
+			console.log(does_not_exist);
+			if (does_not_exist) {
+				console.log('This is a false positive!');
+			}
+			if (does_not_exist.length) {
+				console.log('Element exists.');
+			}
+			else {
+				console.log('Element does not exist.')
+			}
+
+			// Access DOM element from jQuery object.
+			console.log('Access the raw DOM element from a jQuery object.');
+			// First, create a jquery object.
+			var header3 = $('#header3');
+			// Acces it using jQuery:
+			var html = header3.html();
+			console.log(header3);
+			console.log(html);
+			// Now access the DOM element:
+			var header3_dom = header3[0];
+			var html = header3_dom.innerHTML;	// You may no longer use jQuery methods on this raw DOM object.
+			console.log(header3_dom);
+			console.log(html);
+
+			// Access a single jQuery object from several:
+			console.log('Access a single jQuery object from a list of jQuery objects.')
+			var all_paragraphs = $('.paragraph');
+			var paragraph2 = all_paragraphs.eq(1);	// Pass the index of the desired object.
+			console.log(paragraph2);
+
+			// There are several index-based selector methods:
+			// eq(index)
+			// lt(index)
+			// gt(index)
+		});
+	</script>
+</body>
+</html>
