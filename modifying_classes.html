@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.hidden {
+			display: none;
+		}
+	</style>
+	<title>Modifying Classes</title>
+</head>
+<body>
+	<div id="labels">
+		<p class="label" id="label_1">This is a label.</p>
+		<p class="label" id="label_2">This is another label.</p>
+		<button type="button" id="hide">Hide</button>
+		<button type="button" id="show">Show</button>
+		<button type="button" id="toggle">Toggle</button>
+	</div>
+	<script src="jquery-3.1.1.js"></script>
+	<script>
+		$(function() {
+			$('#hide').click(function(ev) {
+				$('.label').addClass('hidden');
+			});
+		});
+		$(function() {
+			$('#show').click(function(ev) {
+				$('.label').removeClass('hidden');
+			});
+		});
+		$(function() {
+			$('#toggle').click(function(ev) {
+				$('.label').toggleClass('hidden');
+			});
+		});
+	</script>
+</body>
+</html>
