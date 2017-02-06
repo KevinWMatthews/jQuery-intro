@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Getters and Setters</title>
+</head>
+<body>
+	<h1>jQuery Getters and Setters</h1>
+	<ul>
+		<li>Element 1</li>
+		<li>Element 2</li>
+		<li>Element 3</li>
+	</ul>
+	<button type="button" id="log_html">Log HTML</button>
+	<button type="button" id="change">Change</button>
+	<button type="button" id="dramatify">Dramatify!</button>
+	<button type="button" id="reset">Reset HTML</button>
+	<script src="jquery-3.1.1.js"></script>
+	<script>
+
+		$(function() {
+			$('#log_html').click(function(ev) {
+				/* Getters generally only work on a single html element, so this would only log the html of the first list element.
+				 * var html = $('li').html();
+				 * console.log(html);
+				 */
+				// In this case, use explicit iteration to log each html value.
+				// jQuery is smart enough to pass the index and raw DOM element into
+				// an anonymous function inside each().
+				$('li').each(function(index, elem) {
+					html = $(elem).html();
+					console.log(html);
+				})
+			});
+			$('#change').click(function(ev) {
+				// Setters implicitly over all selected elements. Powerful!
+				$('li').html('I am text');
+			});
+			$('#dramatify').click(function(ev) {
+				// When using an anonymous function inside a setter method,
+				// jQuery seems to be smart enough to give you:
+				// 		the index as it implicitly iterates
+				//		the original value of what you are changing
+				// Cray!
+				$('li').html(function(index, oldHtml) {
+					return oldHtml + '!';	// Our anonymous function must return a value to html().
+				});
+			});
+			$('#reset').click(function(ev) {
+				// Even though we're using a setter method, we need explicit control over each element.
+				// Use explicit iteration.
+				// jQuery is smart and passes the index and the raw DOM element into an anonymous function inside each().
+				$('li').each(function(index, elem) {
+					console.log(elem);
+					one_based_index = index + 1;
+					$(elem).html('Element ' + one_based_index);
+				});
+			});
+		});
+
+	</script>
+</body>
+</html>
