@@ -1,0 +1,19 @@
+todo.txt
+
+Set and get values in:
+	text boxes		$( 'input[type="text"]' ).val( 'new value' );
+	select boxes	$( 'select' ).val( '2' );
+	check boxes		$( 'input[type="checkbox"]' ).prop( 'checked', true /* or false */ );
+Set and get other attributes:
+	$( 'a' ).attr('title', 'New Title');
+	or
+	$( 'a').attr('href', function(index, original_value) {	// Notice that this is passed two arguments!
+		return <new_href_value>;	// The anonymous function must return a value for attr() to use.
+	});
+http://jqfundamentals.com/chapter/traversing-manipulating
+
+You can copy elements with:
+clone()
+
+Events:
+	this gives you the raw DOM element.
