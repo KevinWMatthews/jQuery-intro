@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="bootstrap-3.3.7.css"></style>
+	<title></title>
+</head>
+<body>
+	<h1>Bootstrap progress bar</h1>
+	<p>Some elements, such as numbers that are only calculated at run time,</p>
+	<p>are best changed by modifying the css directly.</p>
+	<div class="progress">
+		<div class="progress-bar" role="progressbar" aria-valuenow="0"
+		aria-valuemin="0" aria-valuemax="100" style="width:0%">
+		</div>
+	</div>
+	<button type="button" id="progress_increase">+</button>
+	<button type="button" id="progress_decrease">-</button>
+	<script src="jquery-3.1.1.js"></script>
+	<script src="bootstrap-3.3.7.js"></script>
+	<script>
+	var progress_bar_width_percent = 50;
+	$(function() {
+		set_progres_bar_completion(progress_bar_width_percent);
+
+		$('#progress_increase').click(function(ev) {
+			progress_bar_width_percent += 10;	// It's hard to read the css value as a percentage, so let's just track it ourselves.
+			if (progress_bar_width_percent >= 100) {
+				progress_bar_width_percent = 100;
+			}
+			set_progres_bar_completion(progress_bar_width_percent);
+		});
+
+		$('#progress_decrease').click(function(ev) {
+			progress_bar_width_percent -= 10;	// It's hard to read the css value as a percentage, so let's just track it ourselves.
+			if (progress_bar_width_percent <= 0) {
+				progress_bar_width_percent = 0;
+			}
+			set_progres_bar_completion(progress_bar_width_percent);
+		});
+	});
+
+	function set_progres_bar_completion(percentage) {
+		// This changes all progress bars on the screen, but we only have one right now. :)
+		$('.progress-bar').css('width', progress_bar_width_percent + '%');
+	}
+	</script>
+</body>
+</html>
